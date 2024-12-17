@@ -11,8 +11,8 @@ v = r.diff(t)
 pprint(r)
 pprint(v)
 
-r_numericalFunction = sp.lambdify(t, r, "numpy")  # Numerical position function
-v_numericalFunction = sp.lambdify(t, v, "numpy")  # Numerical velocity function
+r_numericalFunction = sp.lambdify(t, r, "numpy") # Numerical position function
+v_numericalFunction = sp.lambdify(t, v, "numpy") # Numerical velocity function
 
 time_values = np.arange(0, 101, 2) # Generate time values (0 to 100 seconds in 2 second intervals)
 position_values = r_numericalFunction(time_values) 
