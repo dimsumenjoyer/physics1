@@ -8,8 +8,8 @@ t = sp.Symbol("t")
 r = 2.13*t**2 - 0.0013*t**4 + 0.000034*t**4.751 # height
 v = r.diff(t)
 
-pprint(r)
-pprint(v)
+pprint(f"r(t) = {r}")
+pprint(f"r'(t) = {v}")
 
 r_numericalFunction = sp.lambdify(t, r, "numpy") # Numerical position function
 v_numericalFunction = sp.lambdify(t, v, "numpy") # Numerical velocity function
@@ -32,19 +32,17 @@ def calculateStuff():
 
 def plot():
     plt.figure(figsize = (10, 6))
-
+    plt.xticks(np.arange(0, 101, 4))
     plt.plot(time_values, position_values, label = "Position (Height)", color = "blue")
     plt.axvline(x = float(maxTime), color = "blue", linestyle = "--", label = f"Max Height at t = {float(maxTime):}")
-
     plt.plot(time_values, velocity_values, label = "Velocity", color = "red")
     plt.axhline(y = 0, color = "black", linestyle = "--", label = "Velocity = 0")
-
     plt.title("Position & Velocity of Rocket vs. Time")
     plt.xlabel("Time (Seconds)")
     plt.ylabel("Value")
     plt.legend()
     plt.grid(True)
-
+    plt.text(maxTime, maxHeight, f"Max Height: {maxHeight:} units", horizontalalignment = "center", verticalalignment = "bottom")
     plt.show()
     return
 
