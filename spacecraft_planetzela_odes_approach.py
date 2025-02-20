@@ -13,13 +13,13 @@ def f() -> None:
     v_1 = v_t.subs(t, t_value) / 10**3
     r_1 = r_t.subs(t, t_value) / 10**3
 
+    pprint(a_0)
     pprint(v_t)
     pprint(r_t)
-    pprint(a_0)
 
-    pprint(f"({r_1}(10^3)) km")
-    pprint(f"({v_1}(10^3)) km/s")
     pprint(f"({a_0}(10^3)) km/s^2")
+    pprint(f"({v_1}(10^3)) km/s")
+    pprint(f"({r_1}(10^3)) km")
     return
 
 f()
