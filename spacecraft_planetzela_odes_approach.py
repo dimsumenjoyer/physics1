@@ -21,7 +21,7 @@ def f() -> None:
     """v_t = <a_{0x}t + v_{0x}, a_{0y}t + v_{0y}, a_{0z}t + v_{0z}>"""
     v_t = integrate(a_0, t) + v_0 # symbolic
     
-    """r_t = <(1/2)a_{0x}t^{2} + v_{0x}t + x_{0}, (1/2)a_{0y}t^{2} + v_{0y}t + y_{0}, (1/2)a_{0z}t^{2} + v_{0z}t + z_{0}"""
+    """r_t = <(1/2)a_{0x}t^{2} + v_{0x}t + x_{0}, (1/2)a_{0y}t^{2} + v_{0y}t + y_{0}, (1/2)a_{0z}t^{2} + v_{0z}t + z_{0}>"""
     r_t = integrate(v_t, t) + r_0 # symbolic 
 
     t_value = 35 * 60 # minutes -> seconds
