@@ -1,16 +1,17 @@
 import sympy as sp
 import numpy as np
-import matplotlib.pyplot as plt
 from sympy.printing import pprint
 from sympy.solvers import nsolve
 
+'''Defining my variables.'''
 t = sp.Symbol("t")
 r = 2.13*t**2 - 0.0013*t**4 + 0.000034*t**4.751 # height
 v = r.diff(t)
 
-pprint(f"r(t) = {r}")
-pprint(f"r'(t) = {v}")
-
+'''
+r = position functon
+v = velocity function
+'''
 r_numericalFunction = sp.lambdify(t, r, "numpy") # Numerical position function
 v_numericalFunction = sp.lambdify(t, v, "numpy") # Numerical velocity function
 
@@ -23,6 +24,9 @@ def findApproxMaxTime():
      print(f"{i}: {2.13 * i ** 2 - 0.0013 * i ** 4 + 0.000034 * i ** 4.751}") # approximately 40
     return
 
+'''
+Finding time where the rocket is at its maximum height.
+'''
 def calculateStuff():
     global maxTime, maxHeight
     maxTime = nsolve(v, t, 40)
@@ -30,22 +34,8 @@ def calculateStuff():
     print(f"The maximum height is {maxHeight} units at {maxTime} seconds.")
     return
 
-def plot():
-    plt.figure(figsize = (10, 6))
-    plt.xticks(np.arange(0, 101, 4))
-    plt.plot(time_values, position_values, label = "Position (Height)", color = "blue")
-    plt.axvline(x = float(maxTime), color = "blue", linestyle = "--", label = f"Max Height at t = {float(maxTime):}")
-    plt.plot(time_values, velocity_values, label = "Velocity", color = "red")
-    plt.axhline(y = 0, color = "black", linestyle = "--", label = "Velocity = 0")
-    plt.title("Position & Velocity of Rocket vs. Time")
-    plt.xlabel("Time (Seconds)")
-    plt.ylabel("Value")
-    plt.legend()
-    plt.grid(True)
-    plt.text(maxTime, maxHeight, f"Max Height: {maxHeight:} units", horizontalalignment = "center", verticalalignment = "bottom")
-    plt.show()
-    return
-
 findApproxMaxTime()
 calculateStuff()
-plot()
+
+pprint(r)
+pprint(v)
